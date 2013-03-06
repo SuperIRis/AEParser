@@ -1,11 +1,11 @@
 /*
 AEParser
-	After Effects tracking points parser
+	Convert After Effects tracking points to JSON
 	by @SuperIRis
 	V 0.1
 	05.03.13
 */
-var parser = function(){
+var AEParser = function(){
 	var aeData		= {},
 		aeKeys		= {"Units Per Second":"framesPerSecond", "Source Width":"width", "Source Height":"height", "Position":"position", "Scale":"scale", "Rotation":"rotation", "Frame":"frame", "X":"x", "Y":"y"},
 		parseBlock	= function(block){
@@ -63,25 +63,4 @@ var parser = function(){
 			return aeData;
 		}
 	};
-
 }();
-var parserExample = function(){
-	var submitForm = function(e){
-		var aeJson = parser.parse(document.getElementById("ae_content").value);
-		document.getElementById("ae_result").value =JSON.stringify(aeJson,null,'\t');
-		return false;
-	};
-	return{
-		init:function(){
-			form = document.getElementById("parse_form");
-			//form.onsubmit = function(){return false;};
-			form.onsubmit = submitForm;
-			//document.getElementById("submit_btn").onclick = parser.parse;
-		}
-	};
-}();
-//
-window.onload=parserExample.init;
-
-
-
